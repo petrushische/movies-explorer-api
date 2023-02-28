@@ -13,6 +13,12 @@
     "no-underscore-dangle": ["error", {
       "allow": ["_id"]
     }],
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "no-unused-vars": "off",
+    "consistent-return": 0,
+    "import/no-extraneous-dependencies": 0,
+    "func-names": 0,
+    "console statement": 0,
+    "no-console": "off"
   }
 }

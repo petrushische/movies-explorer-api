@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({

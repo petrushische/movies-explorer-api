@@ -1,10 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const express = require('express');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { celebrate, Joi } = require('celebrate');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const router = require('express').Router();
 
 const {

@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const bcryptjs = require('bcryptjs');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 
 const userSchema = require('../models/users');
@@ -20,7 +18,6 @@ module.exports.register = (req, res, next) => {
       userSchema.create({
         name, email, password: hash,
       })
-        // eslint-disable-next-line no-unused-vars
         .then((user) => res.status(200).send({
           name, email,
         }))
