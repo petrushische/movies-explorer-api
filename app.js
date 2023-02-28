@@ -8,6 +8,8 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
+const { centralizedErrorHandler } = require('./centralizedErrorHandler/centralizedErrorHandler');
+
 const NotFoundError = require('./errors/NotFoundError');
 
 const auth = require('./middlewares/auth');
@@ -16,7 +18,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { register, login } = require('./controllers/users');
 
-const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/diplomBD' } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
 
 const userRouter = require('./routes/userRoutes');
 
@@ -53,11 +55,7 @@ app.use(errorLogger); //  логгер ошибок
 
 app.use(errors());
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  const message = statusCode === 500 ? 'На сервере произошла ошибка' : err.message;
-  res.status(statusCode).send({ message });
-});
+app.use(centralizedErrorHandler);
 
 mongoose.set('strictQuery', false);
 async function connect() {
