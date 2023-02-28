@@ -66,7 +66,7 @@ module.exports.cancellationDelete = (req, res, next) => {
     });
 };
 
-module.exports.getCardsId = (req, res, next) => {
+module.exports.deleteMovie = (req, res, next) => {
   movieSchema.findByIdAndRemove(req.params._id)
     .populate(['owner'])
     .then((movie) => {
