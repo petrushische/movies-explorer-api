@@ -30,6 +30,9 @@ module.exports.register = (req, res, next) => {
             next(err);
           }
         });
+    })
+    .catch((err) => {
+      next(new BadRequestError('Ошибка Регистраии'));
     });
 };
 
@@ -71,6 +74,8 @@ module.exports.updateUserInfo = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Ошибка валидации'));
+      } else if (err.code === 11000) {
+        next(new NewConflicktError('Пользователь с таким email уже существует'));
       } else {
         next(err);
       }

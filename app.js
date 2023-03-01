@@ -20,9 +20,7 @@ const { register, login } = require('./controllers/users');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
 
-const userRouter = require('./routes/userRoutes');
-
-const movieRouter = require('./routes/movieRoutes');
+const router = require('./routes/index');
 
 const app = express();
 
@@ -56,15 +54,13 @@ app.post('/signin', express.json(), celebrate({
 
 app.post('/signup', express.json(), celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30).required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
   }),
 }), register); // регистрация
 
-app.use(auth, userRouter);
-
-app.use(auth, movieRouter);
+app.use(auth, router);
 
 app.use('*', auth, (req, res, next) => {
   next(new NotFoundError('page not found'));
