@@ -15,13 +15,6 @@
     }],
     "linebreak-style": 0,
     "console statement": 0,
-    "no-console": "off",
-    "no-unused-vars": ["error", {
-      "vars": "all",
-      "args": "none",
-      "ignoreRestSiblings": false
-    }],
-    "consistent-return": "off",
-    "func-names": ["error", "never"]
+    "no-console": "off"
   }
 }

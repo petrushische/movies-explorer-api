@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const { errors, celebrate, Joi } = require('celebrate');
+const { errors } = require('celebrate');
 
 const express = require('express');
 
@@ -15,8 +15,6 @@ const NotFoundError = require('./errors/NotFoundError');
 const auth = require('./middlewares/auth');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-const { register, login } = require('./controllers/users');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
 
@@ -45,22 +43,8 @@ app.use((req, res, next) => {
 
 app.use(requestLogger); //  логгер запросов
 
-app.post('/signin', express.json(), celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-  }),
-}), login); // авторизация
-
-app.post('/signup', express.json(), celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-  }),
-}), register); // регистрация
-
-app.use(auth, router);
+// Все запросы
+app.use(router);
 
 app.use('*', auth, (req, res, next) => {
   next(new NotFoundError('page not found'));

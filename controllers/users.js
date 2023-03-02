@@ -31,9 +31,7 @@ module.exports.register = (req, res, next) => {
           }
         });
     })
-    .catch((err) => {
-      next(new BadRequestError('Ошибка Регистраии'));
-    });
+    .catch(next);
 };
 
 // логгин
