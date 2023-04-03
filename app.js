@@ -24,6 +24,8 @@ const app = express();
 
 const allowedCors = [
   'http://localhost:3000',
+  'https://bibliofilms.nomoredomains.work',
+  'http://bibliofilms.nomoredomains.work',
 ];
 // Cors
 app.use((req, res, next) => {
