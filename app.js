@@ -26,6 +26,7 @@ const allowedCors = [
   'http://localhost:3000',
   'https://bibliofilms.nomoredomains.work',
   'http://bibliofilms.nomoredomains.work',
+  'https://petrushische.github.io/movies-explorer-frontend/',
 ];
 // Cors
 app.use((req, res, next) => {
